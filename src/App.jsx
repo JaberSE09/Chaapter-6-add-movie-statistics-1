@@ -68,6 +68,13 @@ export default function App() {
     );
   };
 
+  const averageRating = () => {
+    const movielist = movies.filter((movie) => movie.rating !== null && movie.rating !== 0);
+
+    return (movielist.reduce((acc, movie) => acc + movie.rating, 0) / movielist.length).toFixed(1);
+  };
+
+
   return (
     <div className="app">
       <Modal
@@ -86,6 +93,10 @@ export default function App() {
         />
       </Modal>
       <div className="movie-actions-list-wrapper">
+        <div className="movie-actions-list-info"  >
+          <span>Total Movies: {movies.length}</span>
+          <span>Average Rating: {averageRating()}</span>
+        </div>
         <div className="movie-actions-list-actions">
           <button className="btn btn-secondary" onClick={removeRatings}>
             Remove Ratings
